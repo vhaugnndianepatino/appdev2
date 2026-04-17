@@ -43,7 +43,6 @@ function DetailsScreen({ route }) {
         onPress={
           () =>
             navigation.push('Details', {
-              // Randomly generate an ID for demonstration purposes
               itemId: Math.floor(Math.random() * 100),
             })
         }
@@ -57,8 +56,12 @@ function DetailsScreen({ route }) {
 const RootStack = createNativeStackNavigator({
   screens: {
     Home: HomeScreen,
-    Details: DetailsScreen,
-  },
+    Details: {
+      screen: DetailsScreen,
+      initialParams: { itemId: 42 },
+    },
+  }
+
 });
 
 const Navigation = createStaticNavigation(RootStack);
